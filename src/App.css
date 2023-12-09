@@ -141,3 +141,16 @@ transition: all 1s linear;
   color: var(--black); 
 }
 
+.button2 {
+  background: rgb(208, 55, 121);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  padding: 11px 26px 11px 26px;
+  cursor: pointer;
+}
+
+.button2:hover {
+  background: linear-gradient(to left, rgb(196, 26, 85), rgb(208, 55, 121));
+}

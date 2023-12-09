@@ -1,6 +1,7 @@
 import React from 'react'
 import './Intro.css'
 import { motion } from 'framer-motion'
+import { NavLink } from 'react-router-dom'
 
 const Intro = () => {
   const transition = { duration: 3, type: 'spring' }
@@ -34,15 +35,23 @@ const Intro = () => {
           </motion.span>
         </div>
         <div className='login'>
-          <motion.button
-          initial = {initialPosition}
-          whileInView={finalPosition}
-          transition={transition}
-           className='button i_button'>Join Us</motion.button>
-        </div>
+        <NavLink to = "/join-us">
+  <motion.button
+    initial={initialPosition}
+    whileInView={finalPosition}
+    transition={transition}
+    className='button i_button'
+    
+  >
+    Join Us
+  </motion.button>
+  </NavLink>
+</div>
       </div>
     </div>
   )
 }
 
 export default Intro
+
+

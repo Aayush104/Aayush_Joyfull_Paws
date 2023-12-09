@@ -1,6 +1,7 @@
 import React from 'react';
 import './Banner.css';
 import { motion } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
 
 const Banner = () => {
   const transition = { duration:6, type: 'spring' };
@@ -25,6 +26,7 @@ const Banner = () => {
           >
             "Searching for a beloved companion to complete your family? Delight in Joyful Paws – Where every tail finds its forever family!"
           </motion.span>
+          <NavLink to ="/join-us">
           <motion.button
             className='button'
             transition={transition}
@@ -33,6 +35,7 @@ const Banner = () => {
           >
             Apply Now 🐩
           </motion.button>
+          </NavLink>
         </div>
       </div>
     </div>

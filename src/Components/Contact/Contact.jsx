@@ -4,7 +4,7 @@ import { IoLocation} from "react-icons/io5";
 import { IoTimeSharp} from "react-icons/io5";
 import {MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
-import {motion, spring} from 'framer-motion'
+import {motion} from 'framer-motion'
 
 
 
