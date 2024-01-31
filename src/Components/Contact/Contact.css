@@ -80,3 +80,11 @@ text-transform: capitalize;
 
 
 
+
+
+.mail::placeholder,
+.password::placeholder {
+  color: #cfcfcf; 
+}
+
+

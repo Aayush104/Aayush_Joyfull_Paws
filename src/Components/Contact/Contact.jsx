@@ -48,7 +48,7 @@ const Contact = () => {
 <form>
     <div className=' grid grid-two-column'>
     <div><input className='username' type='text' id='username' placeholder='username'></input></div>
-<div><input className='email' type='email' id='email' placeholder='abc@gmail.com'></input></div>
+<div><input className='email' type='email' id='email' placeholder='Your Email'></input></div>
 </div>
 
 <div>

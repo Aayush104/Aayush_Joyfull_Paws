@@ -1,8 +1,10 @@
 import React from 'react';
 import './Navbar.css';
 import logo from "../../img/Logo.png";
-import {   RiArrowDropDownLine} from "react-icons/ri";
+import { RiArrowDropDownLine} from "react-icons/ri";
+
 import {Link} from 'react-scroll'
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -42,9 +44,13 @@ const Navbar = () => {
            Contact Us
           </li>
         </Link>
+
+<NavLink to = '/Login'>
+
           <li className='nav-link'>
             Log in
           </li>
+          </NavLink>
           <li className='button'>Donate</li>
         </ul>
       </nav>

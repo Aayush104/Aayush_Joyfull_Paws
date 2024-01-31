@@ -35,7 +35,7 @@ const Intro = () => {
           </motion.span>
         </div>
         <div className='login'>
-        <NavLink to = "/join-us">
+        <NavLink to = "/register">
   <motion.button
     initial={initialPosition}
     whileInView={finalPosition}

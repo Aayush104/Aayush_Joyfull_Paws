@@ -26,7 +26,7 @@ const Banner = () => {
           >
             "Searching for a beloved companion to complete your family? Delight in Joyful Paws – Where every tail finds its forever family!"
           </motion.span>
-          <NavLink to ="/join-us">
+          <NavLink to ="/register">
           <motion.button
             className='button'
             transition={transition}
