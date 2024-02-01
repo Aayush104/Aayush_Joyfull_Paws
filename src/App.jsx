@@ -11,6 +11,7 @@ import Testimonial from './Components/Testimonial/Testimonial';
 import Contact from './Components/Contact/Contact';
 import Footer from './Components/Footer/Footer';
 import Register from './Components/Register/Register';
+import Main from './Components/Main/Main'
 import './App.css';
 import Login from './Components/Login/Login';
 
@@ -39,6 +40,7 @@ const App = () => {
           />
           <Route path="/register" element={<Register />} />
           <Route path = "/Login" element={<Login />} />
+          <Route path = "/main" element={<Main />} />
         </Routes>
       </div>
     </Router>

@@ -1,90 +1,128 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
-import './register.css';
 import axios from 'axios';
+import './register.css';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [userCreated, setUserCreated] = useState(false);
+  
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    axios.post('http://localhost:3002/register', {
-      sentUserName: userName,   // Make sure these names match the expected names on the server
-      sentEmail: email,
-      sentPassword: password
-    })
-    .then(() => {
-      console.log('User has been created');
-    })
-    .catch((error) => {
+   
+
+    try {
+      const response = await axios.post('http://localhost:3002/register', {
+        sentUserName: userName,
+        sentEmail: email,
+        sentPassword: password,
+      });
+    
+      // Check if the email is unique
+      if (response.data.success) {
+        console.log('User has been created');
+        setMessage('User has been created successfully');
+        setUserCreated(true);
+
+        
+      } else {
+        // Handle other server errors gracefully
+        setMessage(response.data.message || 'Oops! Something went wrong. Please try again later.');
+      }
+    } catch (error) {
       console.error('Error creating user:', error);
-    });
+    
+      if (error.response && error.response.status === 409) {
+        console.log("email already exit")
+        // HTTP status 409 indicates conflict, meaning the email is not unique
+        setMessage('Email already exists. Please use another email.');
+      } else {
+        // Handle other server errors gracefully
+        setMessage('Oops! Something went wrong. Please try again later.');
+      }
+    } 
+    
   };
-  
-
   return (
-    <>
-      <div className='w-register'>
-        <NavLink to='/'>
-          <p className='back'>
-            <BiArrowBack className='backarrow' size='1.2rem' /> Back
-          </p>
-        </NavLink>
+    <div className='w-register'>
+      <NavLink to='/'>
+        <p className='back'>
+          <BiArrowBack className='backarrow' size='1.2rem' /> Back
+        </p>
+      </NavLink>
 
-        <div className='m-register'>
-          <div className='sign'>
-            <span>Welcome to Joyful Paws!</span>
-            <span>Sign Up and Spread the Joy! 🐾✨</span>
-            <form action='' className='register' id='register' onSubmit={handleSubmit}>
-              <div className='s-1'>
-                <label>
-                  <strong>Your Name</strong>
-                </label>
-                <input
-                  className='name'
-                  placeholder='Full name'
-                  type='text'
-                  onChange={(e) => setUserName(e.target.value)}
-                />
-              </div>
-              <div className='s-2'>
-                <label>
-                  <strong>Enter mail</strong>
-                </label>
-                <input
-                  className='mail'
-                  placeholder='Enter mail'
-                  type='email'
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className='s-3'>
-                <label>
-                  <strong>Enter password</strong>
-                </label>
-                <input
-                  className='pass'
-                  placeholder='Enter password'
-                  type='Password'
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <button className='button2' type='submit'>
-                Sign Up
-              </button>
-              <NavLink to='/Login'>
-                <p className='already'>Already have an account?</p>
-              </NavLink>
-            </form>
-          </div>
-          <div></div>
+      <div className='m-register'>
+        <div className='sign'>
+          <span>Welcome to Joyful Paws!</span>
+          <span>Sign Up and Spread the Joy! 🐾✨</span>
+          <form className='register' id='register' onSubmit={handleSubmit}>
+            <div className='s-1'>
+              <label>
+                <strong>Your Name</strong>
+              </label>
+              <input
+                className='name'
+                placeholder='Full name'
+                type='text'
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                required
+              />
+            </div>
+            <div className='s-2'>
+              <label>
+                <strong>Enter email</strong>
+              </label>
+              <input
+                className='mail'
+                placeholder='Enter email'
+                type='email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className='s-3'>
+              <label>
+                <strong>Enter password</strong>
+              </label>
+              <input
+                className='pass'
+                placeholder='Enter password'
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+           
+            <button className='button2' type='submit'>
+              {userCreated ? (
+                <NavLink to='/Login'>
+                <span style={{ fontSize: '1rem' }}>Go For Login</span>
+
+                </NavLink>
+              ) : (
+                <span style={{ fontSize: '1rem', }}>Sign Up</span>
+              )}
+            </button>
+            <NavLink to='/Login'>
+              <p className='already'>Already have an account?</p>
+            </NavLink>
+          </form>
+          {message && <p className={message.includes('successfully') ? 'success' : 'error'}>{message}</p>}
+          
+        </div>
+        <div>
+       
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

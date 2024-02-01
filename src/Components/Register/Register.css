@@ -122,3 +122,15 @@ label{
    font-size: 18px;
 }
 
+.success{
+    text-align: center;
+    color: rgb(78, 255, 146);
+   margin: 0 auto;
+}
+
+.error{
+    color: red;
+    margin: 0 auto;
+    text-align: center;
+}
+
