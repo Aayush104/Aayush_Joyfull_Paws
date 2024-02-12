@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate} from 'react-router-dom';
 import './Login.css';
-import { BiArrowBack } from 'react-icons/bi';
+// import { BiArrowBack } from 'react-icons/bi';
 import axios from 'axios';
 
 const Login = () => {
@@ -36,7 +36,7 @@ const Login = () => {
     <div className='m-log'>
       <NavLink to='/'>
         <p className='back'>
-          <BiArrowBack className='backarrow' size='1.2rem' /> Back
+         Back
         </p>
       </NavLink>
       <div className='w-log'>
@@ -47,7 +47,7 @@ const Login = () => {
               <label>Email</label>
               <input
                 className='mail'
-                type='email' // Corrected the type from 'mail' to 'email'
+                type='email' 
                 placeholder='Enter Your Mail'
                 onChange={(e) => setlogEmail(e.target.value)}
                 required

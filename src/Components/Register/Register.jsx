@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { BiArrowBack } from 'react-icons/bi';
+import { NavLink, useNavigate} from 'react-router-dom';
+
 import axios from 'axios';
 import './register.css';
+import { delay } from 'framer-motion';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigateTo = useNavigate()
   const [userCreated, setUserCreated] = useState(false);
   
 
@@ -28,6 +30,13 @@ const Register = () => {
         console.log('User has been created');
         setMessage('User has been created successfully');
         setUserCreated(true);
+        setEmail('');
+        setUserName('');
+        setPassword('');
+      delay(()=>{
+        navigateTo('/Login');
+      }, 2000)
+
 
         
       } else {
@@ -52,7 +61,7 @@ const Register = () => {
     <div className='w-register'>
       <NavLink to='/'>
         <p className='back'>
-          <BiArrowBack className='backarrow' size='1.2rem' /> Back
+         Back
         </p>
       </NavLink>
 
@@ -102,14 +111,7 @@ const Register = () => {
             </div>
            
             <button className='button2' type='submit'>
-              {userCreated ? (
-                <NavLink to='/Login'>
-                <span style={{ fontSize: '1rem' }}>Go For Login</span>
-
-                </NavLink>
-              ) : (
-                <span style={{ fontSize: '1rem', }}>Sign Up</span>
-              )}
+             Sign Up
             </button>
             <NavLink to='/Login'>
               <p className='already'>Already have an account?</p>

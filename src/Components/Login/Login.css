@@ -2,7 +2,9 @@
 height: 100vh;
     background-image: url('../../img/huskylogin.jpg');
     background-position: center;
-    background-size: cover;
+   
+     background-size: cover;
+   
 }
 
 .w-log{
@@ -11,7 +13,7 @@ height: 100vh;
     align-items: center;
     justify-content: center;
   
-    /* background-size: contain; */
+  
 }
 
 .l-container{
